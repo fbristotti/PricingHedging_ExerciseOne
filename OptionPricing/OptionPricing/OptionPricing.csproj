@@ -43,6 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UniformNumberGenerator.cs" />
+    <Compile Include="BrownianNumberGenerator.cs" />
+    <Compile Include="INumberGenerator.cs" />
+    <Compile Include="NormalNumberGenerator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
