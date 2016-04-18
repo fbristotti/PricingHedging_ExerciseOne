@@ -1,9 +1,9 @@
-brownm <- function(n, T,x0=0){
-	sigma = sqrt(T / n)
-	sample = c(x0, sigma * rnorm(n-1,0,1))
-	return(cumsum(sample))
-}
+Brownian Bridge
+------------------
 
+Função que será chamada recursivamente para gerar um novo ponto a partir de dois pontos:
+
+```{r}
 brownbridge.recursive <- function(inf,sup,data){
 	if(inf+1>sup){
 		return(data)
@@ -28,12 +28,16 @@ brownbridge.recursive <- function(inf,sup,data){
 	data = brownbridge.recursive(mid,sup,data)
 	return(data)
 }
+```
 
+Função para inicializar o ponto em T e chamar a função recursiva:
+
+```{r}
 brownbridge <- function(n,T,x0=0){
 
 	sigma = c(rep(0,n-1),1)
 	mean = rep(0,n)
-	sample = c(x0,rep(0,n-2),x0+rnorm(1,0,1))
+	sample = c(x0,rep(0,n-2),rnorm(1,0,1))
 	data = list("sample"=sample,"mean"=mean,"sigma"=sigma)
 
 	ini = 1
@@ -43,26 +47,22 @@ brownbridge <- function(n,T,x0=0){
 	
 	return(data)
 }
+```
 
+Função para construir um movimento browniano:
+```{r}
+brownm <- function(n, T,x0=0){
+	sigma = sqrt(T / n)
+	sample = c(x0, sigma * rnorm(n-1,0,1))
+	return(cumsum(sample))
+}
+```
 
+Exemplo de chamada:
+```{r}
 n = 1000
 data=brownbridge(n,1)
-plot(data$sample,type="l",col="blue",ylab="path",ylim=c(-3,3))
+plot(data$sample,type="l",col="blue",ylab="path",ylim=c(-2,2))
 lines(brownm(n,1),col="red")
-legend("topright",inset=.05,title="curves",c("brownian bridge","brownian"),fill=c("blue","red"),horiz=TRUE)
-
-
-# r=0
-# q=0
-# S_0=100
-# K=100
-# H=85
-# t=256
-# vol=.2
-# daysInYear=256
-# dailyVol = vol*sqrt(1/252)
-# normVector = rnorm(t,0,1)
-# normVolVector=normVector*sqrt(dailyVol)
-# 
-# plot(normVector, col="red")
-# points(normVolVector, col="blue")
+legend("topright",inset=.05,title="curves",c("brownianbridge","brownian"),fill=c("blue","red"),horiz=TRUE)
+```
