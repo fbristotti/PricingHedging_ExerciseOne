@@ -1,22 +1,15 @@
----
-title: "PrecificaÁ„o de OpÁ„o Knock In/Out utilizando Brownian Bridge"
-author: "Fernando Odair Bristotti"
-date: "April 17, 2016"
-output: 
-  html_document: 
-    keep_md: yes
-    toc: yes
----
+# Precifica√ß√£o de Op√ß√£o Knock In/Out utilizando Brownian Bridge
+Fernando Odair Bristotti  
+April 17, 2016  
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+
 
 ## Brownian Bridge
 
-FunÁıes utilizadas para criar um sample via brownian bridge, a primeira funÁ„o varre todos os buckets de forma recursiva e a segunda apenas inicializa os par‚metros para fazer a chamada da funÁ„o de recurs„o.
+Fun√ß√µes utilizadas para criar um sample via brownian bridge, a primeira fun√ß√£o varre todos os buckets de forma recursiva e a segunda apenas inicializa os par√¢metros para fazer a chamada da fun√ß√£o de recurs√£o.
 
-```{r}
+
+```r
 brownbridge.recursive <- function(inf,sup,data){
   if(inf+1>sup){
     return(data)
@@ -60,20 +53,16 @@ brownbridge <- function(n,T,x0=0){
 
 ### Exemplo
 
-Exemplo de sample utilizando as funÁıes acima:
+Exemplo de sample utilizando as fun√ß√µes acima:
 
-```{r pressure, echo=FALSE}
-n = 1000
-data=brownbridge(n,1)
-plot(data$sample,type="l",col="blue",ylab="path",ylim=c(-2,2))
-legend("topright",inset=.05,title="sample",c("brownianbridge"),fill=c("blue"),horiz=TRUE)
-```
+![](option_pricing_files/figure-html/pressure-1.png)
 
-## OpÁ„o PUT KO
+## Op√ß√£o PUT KO
 
-FunÁ„o utilizada para precificaÁ„o da PUT KO:
+Fun√ß√£o utilizada para precifica√ß√£o da PUT KO:
 
-```{r}
+
+```r
 pricing_put_ko <- function(S,K,H,r,T,sigma,N,discret){
   
   prices = rep(0,N)
@@ -103,8 +92,9 @@ pricing_put_ko <- function(S,K,H,r,T,sigma,N,discret){
 }
 ```
 
-Par‚metros e execuÁ„o:
-```{r ko}
+Par√¢metros e execu√ß√£o:
+
+```r
 r=0
 q=0
 S_0=100
@@ -118,23 +108,34 @@ discret=T*252
 ko = pricing_put_ko(S_0,K,H,r,T,vol,N,discret)
 ```
 
-PreÁo calculado para a opÁ„o:
+Pre√ßo calculado para a op√ß√£o:
 
-```{r}
+
+```r
 ko$price
 ```
 
+```
+## [1] 0.8908044
+```
+
 Percentual de toques na barreira
-```{r}
+
+```r
 length(ko$touch[ko$touch==0]) / length(ko$touch) * 100
 ```
 
+```
+## [1] 56.974
+```
 
-## OpÁ„o PUT KI
 
-FunÁ„o utilizada para precificaÁ„o da PUT KI:
+## Op√ß√£o PUT KI
 
-```{r}
+Fun√ß√£o utilizada para precifica√ß√£o da PUT KI:
+
+
+```r
 pricing_put_ki <- function(S,K,H,r,T,sigma,N,discret){
   
   prices = rep(0,N)
@@ -163,8 +164,9 @@ pricing_put_ki <- function(S,K,H,r,T,sigma,N,discret){
 }
 ```
 
-Par‚metros e execuÁ„o:
-```{r ki}
+Par√¢metros e execu√ß√£o:
+
+```r
 r=0
 q=0
 S_0=100
@@ -178,13 +180,23 @@ discret=T*252
 ki = pricing_put_ki(S_0,K,H,r,T,vol,N,discret)
 ```
 
-PreÁo calculado para a opÁ„o:
+Pre√ßo calculado para a op√ß√£o:
 
-```{r}
+
+```r
 ki$price
 ```
 
+```
+## [1] 7.132965
+```
+
 Percentual de toques na barreira
-```{r}
+
+```r
 length(ki$touch[ki$touch==0]) / length(ki$touch) * 100
+```
+
+```
+## [1] 56.744
 ```
