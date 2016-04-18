@@ -118,8 +118,8 @@ K=100
 H=85
 T=1
 vol=.2
-N=1000
-discret=1000
+N=50000
+discret=T*252
 
 ko = pricing_put_ko(S_0,K,H,r,T,vol,N,discret)
 ko$price
