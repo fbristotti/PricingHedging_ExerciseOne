@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OptionPricing", "OptionPricing\OptionPricing.csproj", "{8499AF46-C9A8-442C-834A-D7B2F2F9C99E}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "BarrierOptionPricing", "BarrierOptionPricing\BarrierOptionPricing.pyproj", "{563D1359-0614-41BB-89EF-329E8335B3F9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,8 @@ Global
 		{8499AF46-C9A8-442C-834A-D7B2F2F9C99E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8499AF46-C9A8-442C-834A-D7B2F2F9C99E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8499AF46-C9A8-442C-834A-D7B2F2F9C99E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{563D1359-0614-41BB-89EF-329E8335B3F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{563D1359-0614-41BB-89EF-329E8335B3F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
